@@ -93,6 +93,19 @@ st.caption(
     "Live data from NASA's NeoWs API through a FastAPI backend, saved to SQLite. "
     "1 LD (lunar distance) = the average Earth-Moon distance, about 384,400 km."
 )
+st.markdown(
+        """
+        <div style="margin-top: -0.75rem; margin-bottom: 1.5rem; line-height: 1.35;">
+            <div style="margin-top: 0.15rem; color: var(--text-color); opacity: 0.65; font-size: 0.875rem;">
+                Developed by:
+                <a href="https://www.linkedin.com/in/abchatterjee7" target="_blank" rel="noopener noreferrer">
+                    Aaditya B Chatterjee
+                </a>
+            </div>
+        </div>
+        """,
+    unsafe_allow_html=True,
+)
 
 with st.sidebar:
     st.header("Time window")
