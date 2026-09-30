@@ -91,3 +91,14 @@ These run offline and cover parsing, SQLite, and the rule-based briefing.
 - **Groq 429 / rate limit**: the free tier has per-minute limits. Wait a minute and retry.
 - **Never share `.env`** or commit it to git (`.gitignore` already excludes it).
 - "Potentially hazardous" is NASA's size-and-orbit category. It is not an impact prediction.
+
+# How it looks, lets see via screenshots.
+
+- Live Radar
+![](./screenshots/live-radar.png)
+
+- History
+![](./screenshots/history.png)
+
+- AI Briefing and generating projection of next week
+![](./screenshots/ai-briefing.png)
