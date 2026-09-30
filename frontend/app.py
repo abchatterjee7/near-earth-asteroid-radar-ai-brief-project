@@ -25,6 +25,33 @@ SORT_OPTIONS = {
 
 st.set_page_config(page_title="Asteroid Radar", page_icon="☄️", layout="wide")
 
+# ----------------------------------------------------------------
+
+import sys, threading, time
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # so "backend" imports work
+
+
+@st.cache_resource  # runs once per server process, not on every rerun
+def start_embedded_backend():
+    import uvicorn
+    from backend.main import app as api_app
+
+    server = uvicorn.Server(
+        uvicorn.Config(api_app, host="127.0.0.1", port=8000, log_level="warning")
+    )
+    threading.Thread(target=server.run, daemon=True).start()
+    for _ in range(50):  # wait up to ~10s for it to come up
+        try:
+            requests.get("http://127.0.0.1:8000/health", timeout=1)
+            return
+        except requests.exceptions.RequestException:
+            time.sleep(0.2)
+
+
+if os.getenv("EMBED_BACKEND") == "1":  # only on the cloud; local dev is unchanged
+    start_embedded_backend()
 
 # ---------------------------------------------------------------- helpers
 class ApiError(Exception):
