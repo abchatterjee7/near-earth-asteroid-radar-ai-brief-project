@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+httpx
+python-dotenv
+groq
+streamlit>=1.50.0
+pandas
+plotly
+requests
